@@ -59,12 +59,12 @@ download_file="sing-box.tar.gz"
 
 
   if [ "${asset}" = "update" ] ; then
-    /data/adb/magisk/busybox wget https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.dat -O /sdcard/Download/geoip.db >&2
+    /data/adb/magisk/busybox wget https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db -O /sdcard/Download/geoip.db >&2
     if [ "$?" != "0" ] ; then
       ui_print "Download err"
       abort
     fi
-    /data/adb/magisk/busybox wget https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.dat -O /sdcard/Download/geosite.db >&2
+    /data/adb/magisk/busybox wget https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db -O /sdcard/Download/geosite.db >&2
     if [ "$?" != "0" ] ; then
       ui_print "Download err"
       abort
