@@ -7,7 +7,7 @@ config="config.json"
 source ${module_path}/sing.config
 bin_path="${module_path}/bin/${bin_name}-box"
 pid_file="${module_path}/run/${bin_name}.pid"
-error_log="${module_path}/run/error.log"
+error_log="${module_path}/run/service.log"
 conf_file="${module_path}/confs/${config}"
 bin_opts="-D ${module_path}/assets -c ${conf_file} run"
 sing_gid="3005"

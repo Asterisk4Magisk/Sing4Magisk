@@ -10,15 +10,14 @@ asset="update"
 [ -f ${module_path}/sing.config ] && source ${module_path}/sing.config
 
 if [ $BOOTMODE ! = true ] ; then
-  offline=true
+  core="custom"
+  asset="custom"
 fi
 
 conf_file="${module_path}/confs/${config}"
 
 sing_link="https://github.com/SagerNet/sing-box/releases"
 github_api="https://api.github.com/repos/SagerNet/sing-box/releases"
-
-download_file="sing-box.tar.gz"
 
   case "${ARCH}" in
     arm)
@@ -50,7 +49,8 @@ download_file="sing-box.tar.gz"
     fi
   else
     if [ $(ls /sdcard/Download | grep sing-box | grep "${version}.tar.gz") ] ; then
-      version=$(ls /sdcard/Download | grep sing-box | grep "${version}.tar.gz")
+      download_file=$(ls /sdcard/Download | grep sing-box | grep "${version}.tar.gz")
+      download_path="/sdcard/Download/${download_file}"
     else
       ui_print "Offline mode err"
       abort
@@ -100,10 +100,9 @@ set_perm_recursive  ${module_path}/bin                  0  0  0755
 
 # stop service
 # ${module_path}/scripts/sing.service stop
-  
+
 # install xray execute file
 tar --strip-components=1 -xvzf ${download_path} -C ${module_path}/bin/
-rm "${download_path}"
 
 # start service
 # ${module_path}/scripts/sing.service start
