@@ -35,7 +35,8 @@ github_api="https://api.github.com/repos/SagerNet/sing-box/releases"
   esac
 
   if [ "${core}" = "update" ] ; then
-    latest_version=`/data/adb/magisk/busybox wget -qO- ${github_api} | grep -m 1 "tag_name" | grep -o "[0-9.]*"`
+    latest_version=`/data/adb/magisk/busybox wget -qO- ${github_api} | grep -m 1 "tag_name" | awk '{print $2}'`
+    latest_version=${latest_version:2:-2}
     download_file="sing-box-${latest_version}-${version}.tar.gz"
     download_path="/sdcard/Download/${download_file}"
     if [ "$latest_version" = "" ] ; then
